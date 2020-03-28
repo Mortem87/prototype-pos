@@ -1,83 +1,146 @@
-window.onload = function(e){ 
-    //crear();
-    
-}
-function crear(){
-    var list = [  
-        { "col_1": "val_11", "col_3": "val_13" }, 
-        { "col_2": "val_22", "col_3": "val_23" }, 
-        { "col_1": "val_31", "col_3": "val_33" } 
-    ]; 
-    var col = 4;//document.getElementById('cols').value;
-    var filas = 4;//document.getElementById('rows').value;
-    var tabla="<table border='1'>";
-    for(i=0;i<filas;i++){
-    tabla+='<tr>';
-    for(j=0;j<col;j++){
-        if(i==0){
-            if(j==0){
-                tabla+='<th> ' + 'Nombre del Producto' +'</th>';
-            }else if(j==1){
-                tabla+='<th> ' + 'Cantidad' +'</th>';
-            }else if(j==2){
-                tabla+='<th> ' + 'Precio Unitario' +'</th>';
-            }else if(j==3){
-                tabla+='<th> ' + 'SubTotal' +'</th>';
-            }else{
-                tabla+='<th> ' + 'celda:(' + i +', '+ j +')</th>';
-            }
-        }else{
-            tabla+='<td> ' + 'celda:(' + i +', '+ j +')</td>';
-        }
-    
-    }
-    tabla+='</tr>';
-    }
-    tabla+='</table>';
-    document.getElementById('resultado').innerHTML=tabla;
-}
-function crear2(){
-    document.getElementById('resultado').innerHTML='';
-}
+window.onload = function() {
+    Arbol();
+    SetMenu();
+    CloseAccordion();
+    OpenAccordion();
+  };
+  function OpenAccordion(){
+    var arrow_up = document.getElementById('arrow_up');
+    arrow_up.addEventListener('click', function (event) {
+        arrow_up.style.display="none";
+        var arrow_down = document.getElementById('arrow_down');
+        arrow_down.style.display = null;
+        
+        var section_first = document.getElementById("first");
+        section_first.style.display=null;
 
-// Builds the HTML Table out of myList json data from Ivy restful service.
-function buildHtmlTable(arr) {
-    _table_.id = "tb_products"
-  var table = _table_.cloneNode(false),
-    columns = addAllColumnHeaders(arr, table);
-  for (var i = 0, maxi = arr.length; i < maxi; ++i) {
-    var tr = _tr_.cloneNode(false);
-    for (var j = 0, maxj = columns.length; j < maxj; ++j) {
-      var td = _td_.cloneNode(false);
-      cellValue = arr[i][columns[j]];
-      td.appendChild(document.createTextNode(arr[i][columns[j]] || ''));
-      tr.appendChild(td);
-    }
-    table.appendChild(tr);
+        var div_content = document.getElementById('div_content');
+        div_content.style.height = "170px";//null;
+      });
   }
-  return table;
-}
+  function CloseAccordion(){
+    var arrow_down = document.getElementById('arrow_down');
+    arrow_down.addEventListener('click', function (event) {
+        arrow_down.style.display="none";
+        var arrow_up = document.getElementById('arrow_up');
+        arrow_up.style.display = null;
 
-// Adds a header row to the table and returns the set of columns.
-// Need to do union of keys from all records as some records may not contain
-// all records
-function addAllColumnHeaders(arr, table) {
-  var columnSet = [],
-    tr = _tr_.cloneNode(false);
-  for (var i = 0, l = arr.length; i < l; i++) {
-    for (var key in arr[i]) {
-      if (arr[i].hasOwnProperty(key) && columnSet.indexOf(key) === -1) {
-        columnSet.push(key);
-        var th = _th_.cloneNode(false);
-        th.appendChild(document.createTextNode(key));
-        tr.appendChild(th);
+        var div_content = document.getElementById('div_content');
+        div_content.style.height = "4em";
+      });
+  }
+  function Arbol(){
+    var tree = new Tree('one');
+ 
+    tree._root.children.push(new Node('two'));
+    tree._root.children[0].parent = tree;
+
+    tree._root.children.push(new Node('three'));
+    tree._root.children[1].parent = tree;
+
+    tree._root.children.push(new Node('four'));
+    tree._root.children[2].parent = tree;
+
+    tree._root.children[0].children.push(new Node('five'));
+    tree._root.children[0].children[0].parent = tree._root.children[0];
+
+    tree._root.children[0].children.push(new Node('six'));
+    tree._root.children[0].children[1].parent = tree._root.children[0];
+
+    tree._root.children[2].children.push(new Node('seven'));
+    tree._root.children[2].children[0].parent = tree._root.children[2];
+
+    var element = 'four';
+
+    tree.traverseBF(function(node) {
+        console.log(node.data)
+    });
+    var currentTree = null;
+    // tree is an example of a root node
+    tree.contains(function(node){
+      if (node.data === element) {
+          console.log(node);
+          currentTree = node;
       }
+    }, tree.traverseBF);
+    var profundidad = 0;
+    while(currentTree.parent!=null){// || profundidad == 10){
+      profundidad++;
+      currentTree = currentTree.parent;
     }
+    console.log('Profundidad de ' + element + ' es ' + profundidad);
   }
-  table.appendChild(tr);
-  return columnSet;
+
+  function SetMenu(){
+    
+
+    var section_first;
+    section_first = document.getElementById('first');
+    section_first.appendChild(AddMenuElement('img/fruit.svg', 'Home', 'radio-0', 'home.html'));
+    section_first.appendChild(AddMenuElement('img/person.svg', 'People', 'radio-1', 'people.html'));
+    section_first.appendChild(AddMenuElement('img/fruit.svg', 'Products', 'radio-2', 'products.html'));
+    section_first.appendChild(AddMenuElement('img/grape.svg', 'Sales', 'radio-3', 'sales.html'))
+    section_first.appendChild(AddMenuElement('img/person.svg', 'Roles', 'radio-4', 'roles.html'));
+    section_first.appendChild(AddMenuElement('img/person.svg', 'Stock', 'radio-5', 'home.html'));
+    section_first.appendChild(AddMenuElement('img/person.svg', 'Recipes', 'radio-6', 'recipes.html'));
+  }
+function AddMenuElement(p_source, p_text, p_radio, p_page){
+ 
+    var div_container;
+    div_container = document.createElement('div');
+    div_container.classList.add('container');
+    
+    var rd_four;
+    rd_four = document.createElement('input');
+    rd_four.type = 'radio';
+    rd_four.name = 'group1';
+    rd_four.id = p_radio;
+    rd_four.addEventListener('click', 
+    function(){
+        var iframe = document.getElementById('ifrm_content');
+        iframe.src = p_page;
+        }, false
+    );
+
+    var lbl_radio_one;
+    lbl_radio_one = document.createElement('label');
+    lbl_radio_one.htmlFor = p_radio;
+
+    var spn_rd;
+    spn_rd = document.createElement('span');
+    spn_rd.classList.add('radio');
+    
+    lbl_radio_one.appendChild(spn_rd);
+
+    var div_head_person;
+    div_head_person = document.createElement('div');
+    div_head_person.classList.add('class-head-person');
+    
+    var div_menu_button;
+    div_menu_button = document.createElement('div');
+    div_menu_button.classList.add('menu-button');
+
+    var img_person;
+    img_person = document.createElement('img');
+    img_person.classList.add('class-person');
+    img_person.src = p_source;
+    img_person.alt = 'person';
+
+    div_menu_button.appendChild(img_person);
+
+    var par_person_txt;
+    par_person_txt = document.createElement('p');
+    var txt_node;
+    txt_node = document.createTextNode(p_text);
+    par_person_txt.appendChild(txt_node);
+
+    div_head_person.appendChild(div_menu_button);
+    div_head_person.appendChild(par_person_txt);
+
+    spn_rd.appendChild(div_head_person);
+
+    div_container.appendChild(rd_four);
+    div_container.appendChild(lbl_radio_one);
+
+   return div_container;
 }
-var _table_ = document.createElement('table'),
-  _tr_ = document.createElement('tr'),
-  _th_ = document.createElement('th'),
-  _td_ = document.createElement('td');

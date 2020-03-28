@@ -63,27 +63,6 @@ function addRow(p_head, p_one, p_two, p_three, p_tipo){
 
     products.appendChild(product_detail_three);
 
-    //end product_detail_three
-
-    //begin foot
-    /*var product_foot;
-    product_foot = document.createElement('div');
-    //product_foot.id = 'div_apple_header';
-    product_foot.classList.add('Rtable-cell');
-    product_foot.classList.add('Rtable-cell--foot');
-
-    var foot = document.createElement('strong');
-    text = document.createTextNode(p_foot);
-    foot.appendChild(text);
-
-    product_foot.appendChild(foot);
-    
-    products.appendChild(product_foot);
-    */
-    //end foot
-    
-    console.log('You are in addRow');
-
 }
 function addRowTiny(p_class_one, p_one){
     
@@ -107,118 +86,9 @@ function addRowTiny(p_class_one, p_one){
     product_detail_one.appendChild(parraph);
 
     return product_detail_one;
-}/*
-function addRow(p_head, p_one, p_two, p_three){
-  product_detail_two
-    product_head.id = 'div_apple_header';
-    product_head.classList.add('Rtable-cell');
-    product_head.classList.add('Rtable-cell--head');
-    
-
-    var header = document.createElement('h3');
-    var text = document.createTextNode(p_head);
-    header.appendChild(text);
-
-    product_head.appendChild(header);
-
-    var products = document.getElementById('div_products');
-    
-    products.appendChild(product_head);
-    //end head
-'Rtable-cell--quantity-par'
-    //begin product_detail_one
-
-    //var product_detail_one = addRowTiny('Rtable-cell', 'Rtable-cell-product-name', 'Rtable-cell-product-name-par', p_one, p_tipo);
-
-    //products.appendChild(product_detail_one);
-
-    /*product_detail_one = document.createElement('div');
-    product_detail_one.classList.add('Rtable-cell');
-    product_detail_one.classList.add('Rtable-cell-product-name');
-    
-    var parraph = document.createElement('p');
-    text = document.createTextNode(p_one);
-    parraph.appendChild(text);
-
-    product_detail_one.appendChild(parraph);
-    
-    //end product_detail_one
-
-    //begin product_detail_two
-
-    var product_detail_two;
-
-    product_detail_two = document.createElement('div');
-
-    //product_detail_two.id = 'div_product_detail_two';
-
-    product_detail_two.classList.add('Rtable-cell');
-
-    if(p_tipo=='impar'){
-        product_detail_two.classList.add('Rtable-cell--quantity');
-    }else{
-        product_detail_two.classList.add('Rtable-cell--quantity-par');
-    }
-
-    var parraph = document.createElement('p');
-    text = document.createTextNode(p_two);
-    parraph.appendChild(text);
-    
-    product_detail_two.appendChild(parraph);
-    products.appendChild(product_detail_two);
-
-    //end product_detail_two
-
-    //begin product_detail_three
-
-    var product_detail_three;
-
-    product_detail_three = document.createElement('div');
-
-    //product_detail_three.id = 'div_product_detail_three';
-
-    product_detail_three.classList.add('Rtable-cell');
-
-    if(p_tipo=='impar'){
-        product_detail_three.classList.add('Rtable-cell--unit-price');
-    }else{
-        product_detail_three.classList.add('Rtable-cell--unit-price-par');
-    }
-
-    var parraph = document.createElement('p');
-    text = document.createTextNode(p_three);
-    parraph.appendChild(text);
-    
-    product_detail_three.appendChild(parraph);
-    products.appendChild(product_detail_three);
-
-    //end product_detail_three
-
-    //begin foot
-    /*var product_foot;
-    product_foot = document.createElement('div');
-    //product_foot.id = 'div_apple_header';
-    product_foot.classList.add('Rtable-cell');
-    product_foot.classList.add('Rtable-cell--foot');
-
-    var foot = document.createElement('strong');
-    text = document.createTextNode(p_foot);
-    foot.appendChild(text);
-
-    product_foot.appendChild(foot);
-    
-    products.appendChild(product_foot);
-    */
-    //end foot*/
-//console.log('You are in addRow');
-/*<div class="Rtable-cell Rtable-cell--head"><h3>Eddard Stark</h3></div>
-  <div class="Rtable-cell">Has a sword named Ice</div>
-  <div class="Rtable-cell">No direwolf</div>
-  <div class="Rtable-cell Rtable-cell--foot"><strong>Lord of Winterfell</strong></div>
-*/
-//}
+}
 window.onload = function(){ 
-
+    
     //addRow('Rossmar Akar', 'Has a sword named Ice', 'No direwolf', 'Knows All');
 
 
@@ -237,24 +107,24 @@ buildHtmlTable([
 
 
 } 
- 
+
 function buildHtmlTable(arr) {
-    var format = new Intl.NumberFormat('en-INR', { 
+    /*var format = new Intl.NumberFormat('en-INR', { 
         style: 'currency', 
         currency: 'MXN', 
         minimumFractionDigits: 2, 
-    }); 
+    });*/ 
   for (var i = 0, maxi = arr.length; i < maxi; ++i) {
 
     var quantity = arr[i]['quantity'];
     var unit_price = arr[i]['unit_price'];
     var total_price = quantity * unit_price;
     var p_tipo = (i%2)? 'par' : 'impar';
-    console.log(p_tipo);
+    /*console.log(p_tipo);*/
     var p_head = arr[i]['product_name'];
-    var p_one = format.format(total_price);//arr[i]['unit_measure'];
+    var p_one = total_price;/*format.format(total_price);*///arr[i]['unit_measure'];
     var p_two = Number(quantity).toFixed(4);
-    var p_three = format.format(unit_price); 
+    var p_three = unit_price;/*format.format(unit_price);*/ 
     addRow(p_head, p_one, p_two, p_three, p_tipo);
   }
 }

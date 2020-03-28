@@ -1,78 +1,106 @@
-#tb_products th{
-  color:white;
-}            
-table {
-  font-family: system-ui;
-  border-collapse: collapse;
-  border-top-left-radius: 1em;
-  border-top-right-radius: 1em;
-  /*border-radius : 1em;*/
-  overflow: hidden;
-}
-th {
-  
-  padding: 10px;
-  background-color: #87CEEB;
-}
-th, td {  
-  /*background: #ddd;*/
-  border-bottom: 2px solid #87CEEB; 
-  border-top: 2px solid #87CEEB;  
-}
-td{
-  border-left: 2px solid #87CEEB;
-  border-right: 2px solid #87CEEB;
-}
-.css-mine {
-  margin-top: 2em;
-  clear: both;
-}
-
 body {
-  margin: 1.5em;
-}
-html {
-  height: 100%;
-  background-color: #EEE;
-}
-body {
-  box-sizing: border-box;
-  min-height: 100%;
-  margin: 0 auto;
-  padding: 2em;
-  max-width: 800px;
+  padding: 0;
+  font-weight: bold;
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 1.2em;
-  background-color: white;
-  border: double 3px #DDD;
-  border-top: none;
-  border-bottom: none;
+  color: black;
 }
-  /*table {
-  border-collapse: collapse;
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Josefin Sans Regular'), local('JosefinSans-Regular'), url(https://fonts.gstatic.com/s/josefinsans/v14/Qw3aZQNVED7rKGKxtqIqX5EUDXx9.ttf) format('truetype');
 }
-table, th, td {
-  border: 2px solid black;
-}
-table {
-  border-collapse: collapse;
-  border-radius: 1em;
-  /*overflow: hidden;*/
-/*}*/
-/*body {
-  margin: 1.5em;
-}*/
-/*
-th, td {
-  padding: 1em;
-  background: #ddd;
-  border-bottom: 2px solid white; 
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Josefin Sans Bold'), local('JosefinSans-Bold'), url(https://fonts.gstatic.com/s/josefinsans/v14/Qw3FZQNVED7rKGKxtqIqX5Ectllte10k.ttf) format('truetype');
 }
 
-#tb_products td , #tb_products th{
-  border-radius: 1em;
-  border: 2px solid rgb(51, 133, 201);
-  padding: 20px; 
-  /* width: 200px;
-  height: 150px;  */
-/*}*/
+html,body, iframe{ 
+  margin:0; 
+  height:100%; 
+}
+.section {
+  padding-top: 64px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+.section input[type="radio"]{
+  display: none;
+}
+
+.container {
+  display: inline-block;
+}
+.container label {
+  position: relative;
+}
+.class-person{
+  padding-top:10px;
+  width:40px;
+  height: 40px;
+}
+
+.class-head-person{
+  display: inline-block;
+  text-align: center;
+  width:70px;
+  height: 80px;
+}
+.class-head-person-double{
+  display: inline-block;
+  text-align: center;
+  width:140px;
+  height: 80px;
+}
+.menu-button{
+  border-top-left-radius: 2.5em;
+  border-top-right-radius: 2.5em;
+  border-bottom-left-radius: 2.5em;
+  border-bottom-right-radius: 2.5em;
+  border-style: solid;
+  border-color: black;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+}
+.menu-button-double{
+  border-top-left-radius: 2.5em;
+  border-top-right-radius: 2.5em;
+  border-bottom-left-radius: 2.5em;
+  border-bottom-right-radius: 2.5em;
+  border-style: solid;
+  border-color: black;
+  height: 60px;
+  width: 135px;
+  text-align: center;
+}
+/* Radio buttons */
+.container span.radio:hover {
+  cursor: pointer;
+}
+input[type="radio"]:checked + label div.menu-button {
+  background-color: white;
+}
+
+#div_content{
+  overflow: hidden;
+  height: 170px;
+  transition: height 1s;
+  vertical-align: bottom;
+}
+.second-content {
+  background-color: #cccccc;
+  position: relative
+}
+.second-content svg {
+ 
+ position:absolute;
+
+ left: 50%;
+ right: 50%;
+ bottom: 0;
+}
